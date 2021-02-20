@@ -1,0 +1,37 @@
+name: crimyo
+description: A new Flutter application.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.0
+
+  dio: ^3.0.10 # http client
+  html: ^0.14.0+4 # html parser
+  enhanced_future_builder: ^1.0.3 # FutureBuilder wrapper
+  pdf_flutter: ^1.1.4 # displaying PDF
+  cached_network_image: ^2.5.0 # cache image & display
+  flutter_cache_manager: ^2.1.1 # cache files
+  photo_view: ^0.10.3 # display image(s) in single page
+
+  firebase_core:
+  firebase_messaging:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/

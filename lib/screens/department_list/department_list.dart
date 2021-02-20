@@ -12,6 +12,7 @@ class DepartmentList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: NavigationService().scaffoldKey = GlobalKey<ScaffoldState>(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -25,12 +26,13 @@ class DepartmentList extends StatelessWidget {
                     text: departments[index].name,
                     press: () {
                       NavigationService().navigatorKey.currentState.push(
-                        MaterialPageRoute(
-                          builder: (context) => DepartmentLessonPlanListScreen(
-                            department: departments[index],
-                          ),
-                        ),
-                      );
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  DepartmentLessonPlanListScreen(
+                                department: departments[index],
+                              ),
+                            ),
+                          );
                     },
                   );
                 },

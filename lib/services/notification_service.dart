@@ -33,6 +33,33 @@ class NotificationService {
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
         print("onMessage: $message");
+        NavigationService().scaffoldKey.currentState.showSnackBar(
+              SnackBar(
+                behavior: SnackBarBehavior.floating,
+                duration: Duration(seconds: 10),
+                content: GestureDetector(
+                  onTap: () {
+                    NavigationService()
+                        .scaffoldKey
+                        .currentState
+                        .hideCurrentSnackBar();
+                    _serialiseAndNavigate(message);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.only(bottom: 20.0),
+                    color: Colors.transparent,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(message['notification']["title"]),
+                        Text(message['notification']["body"]),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            );
       },
       onBackgroundMessage: myBackgroundMessageHandler,
       onLaunch: (Map<String, dynamic> message) async {
@@ -73,11 +100,9 @@ class NotificationService {
           break;
       }
 
-      if (route != null){
+      if (route != null) {
         NavigationService().navigatorKey.currentState.push(route);
       }
-
     }
   }
-
 }

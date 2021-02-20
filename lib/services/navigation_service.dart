@@ -10,4 +10,5 @@ class NavigationService {
   }
 
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  GlobalKey<ScaffoldState> scaffoldKey;
 }

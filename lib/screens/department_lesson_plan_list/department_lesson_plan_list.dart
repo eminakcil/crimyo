@@ -18,6 +18,7 @@ class DepartmentLessonPlanListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: NavigationService().scaffoldKey = GlobalKey<ScaffoldState>(),
       body: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -34,12 +35,12 @@ class DepartmentLessonPlanListScreen extends StatelessWidget {
                       text: snapshotData[index].title,
                       press: () {
                         NavigationService().navigatorKey.currentState.push(
-                          MaterialPageRoute(
-                            builder: (context) => DocumentScreen(
-                              url: snapshotData[index].url,
-                            ),
-                          ),
-                        );
+                              MaterialPageRoute(
+                                builder: (context) => DocumentScreen(
+                                  url: snapshotData[index].url,
+                                ),
+                              ),
+                            );
                       },
                     );
                   },

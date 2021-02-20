@@ -6,6 +6,7 @@ import 'package:crimyo/components/list_item.dart';
 import 'package:crimyo/models/department.dart';
 import 'package:crimyo/screens/document/document_screen.dart';
 import 'package:crimyo/services/department_service.dart';
+import 'package:crimyo/services/navigation_service.dart';
 
 class DepartmentLessonPlanListScreen extends StatelessWidget {
   const DepartmentLessonPlanListScreen({
@@ -32,8 +33,7 @@ class DepartmentLessonPlanListScreen extends StatelessWidget {
                     return ListItem(
                       text: snapshotData[index].title,
                       press: () {
-                        Navigator.push(
-                          context,
+                        NavigationService().navigatorKey.currentState.push(
                           MaterialPageRoute(
                             builder: (context) => DocumentScreen(
                               url: snapshotData[index].url,

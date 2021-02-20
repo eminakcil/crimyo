@@ -6,6 +6,7 @@ import 'package:crimyo/screens/document/document_screen.dart';
 import 'package:crimyo/screens/post_list/post_list_screen.dart';
 import 'package:crimyo/services/announcment_service.dart';
 import 'package:crimyo/services/news_service.dart';
+import 'package:crimyo/services/navigation_service.dart';
 
 import 'menu_button.dart';
 
@@ -19,8 +20,7 @@ class ButtonsGridView extends StatelessWidget {
           iconColor: Colors.black,
           color: Color(0xFFC4C4C4),
           press: () {
-            Navigator.push(
-              context,
+            NavigationService().navigatorKey.currentState.push(
               MaterialPageRoute(
                 builder: (context) => PostListScreen(
                   postListFuture: NewsService().getAllNews(),
@@ -36,8 +36,7 @@ class ButtonsGridView extends StatelessWidget {
           iconColor: Colors.black,
           color: Color(0xFFC4C4C4),
           press: () {
-            Navigator.push(
-              context,
+            NavigationService().navigatorKey.currentState.push(
               MaterialPageRoute(
                 builder: (context) => PostListScreen(
                   postListFuture: AnnouncmentService().getAllAnnouncements(),
@@ -53,8 +52,7 @@ class ButtonsGridView extends StatelessWidget {
           iconColor: Colors.black,
           color: Color(0xFFC4C4C4),
           press: () {
-            Navigator.push(
-              context,
+            NavigationService().navigatorKey.currentState.push(
               MaterialPageRoute(
                 builder: (context) => DepartmentList(),
               ),
@@ -89,8 +87,7 @@ class ButtonsGridView extends StatelessWidget {
             iconColor: Colors.black,
             color: Color(0xFFC4C4C4),
             press: () {
-              Navigator.push(
-                context,
+              NavigationService().navigatorKey.currentState.push(
                 MaterialPageRoute(
                   builder: (context) => DocumentScreen(
                     url: element["url"],

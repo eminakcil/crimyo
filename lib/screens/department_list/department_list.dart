@@ -4,6 +4,7 @@ import 'package:crimyo/screens/department_lesson_plan_list/department_lesson_pla
 import 'package:crimyo/components/list_item.dart';
 import 'package:crimyo/models/department.dart';
 import 'package:crimyo/services/department_service.dart';
+import 'package:crimyo/services/navigation_service.dart';
 
 class DepartmentList extends StatelessWidget {
   final List<Department> departments = DepartmentService().getAllDepartments();
@@ -23,8 +24,7 @@ class DepartmentList extends StatelessWidget {
                   return ListItem(
                     text: departments[index].name,
                     press: () {
-                      Navigator.push(
-                        context,
+                      NavigationService().navigatorKey.currentState.push(
                         MaterialPageRoute(
                           builder: (context) => DepartmentLessonPlanListScreen(
                             department: departments[index],

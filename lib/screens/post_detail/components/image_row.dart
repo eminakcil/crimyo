@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:crimyo/screens/photo_gallery/photo_gallery_screen.dart';
 import 'package:crimyo/constants.dart';
+import 'package:crimyo/services/navigation_service.dart';
 
 class ImageRow extends StatelessWidget {
   final List<String> images;
@@ -29,8 +30,7 @@ class ImageRow extends StatelessWidget {
                 (index) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
+                      NavigationService().navigatorKey.currentState.push(
                         MaterialPageRoute(
                           builder: (context) => PhotoGalleryScreen(
                             imageUrls: images,

@@ -6,6 +6,7 @@ import 'package:crimyo/screens/document/document_screen.dart';
 import 'package:crimyo/screens/post_list/post_list_screen.dart';
 import 'package:crimyo/services/announcment_service.dart';
 import 'package:crimyo/services/news_service.dart';
+import 'package:crimyo/services/navigation_service.dart';
 
 class Buttons extends StatelessWidget {
   const Buttons({
@@ -22,8 +23,7 @@ class Buttons extends StatelessWidget {
           Button(
             text: "Akademik Takvim",
             press: () {
-              Navigator.push(
-                context,
+              NavigationService().navigatorKey.currentState.push(
                 MaterialPageRoute(
                   builder: (context) => DocumentScreen(
                     url:
@@ -37,8 +37,7 @@ class Buttons extends StatelessWidget {
           Button(
             text: "Yemek Listesi",
             press: () {
-              Navigator.push(
-                context,
+              NavigationService().navigatorKey.currentState.push(
                 MaterialPageRoute(
                   builder: (context) => DocumentScreen(
                     url:
@@ -52,8 +51,7 @@ class Buttons extends StatelessWidget {
           Button(
             text: "Haberler",
             press: () {
-              Navigator.push(
-                context,
+              NavigationService().navigatorKey.currentState.push(
                 MaterialPageRoute(
                   builder: (context) => PostListScreen(
                     postListFuture: NewsService().getAllNews(),
@@ -66,8 +64,7 @@ class Buttons extends StatelessWidget {
           Button(
             text: "Duyurular",
             press: () {
-              Navigator.push(
-                context,
+              NavigationService().navigatorKey.currentState.push(
                 MaterialPageRoute(
                   builder: (context) => PostListScreen(
                     postListFuture: AnnouncmentService().getAllAnnouncements(),
@@ -80,8 +77,7 @@ class Buttons extends StatelessWidget {
           Button(
             text: "Ders Programları",
             press: () {
-              Navigator.push(
-                context,
+              NavigationService().navigatorKey.currentState.push(
                 MaterialPageRoute(
                   builder: (context) => DepartmentList(),
                 ),

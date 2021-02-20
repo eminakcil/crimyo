@@ -4,7 +4,6 @@ import 'package:crimyo/models/post.dart';
 import 'package:crimyo/screens/post_detail/post_detail_screen.dart';
 import 'package:crimyo/services/navigation_service.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NotificationService {

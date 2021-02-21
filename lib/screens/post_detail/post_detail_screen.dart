@@ -5,7 +5,6 @@ import 'package:enhanced_future_builder/enhanced_future_builder.dart';
 import 'package:crimyo/components/header.dart';
 import 'package:crimyo/models/post.dart';
 import 'package:crimyo/services/parse_helper.dart';
-import 'package:crimyo/services/navigation_service.dart';
 
 import 'components/content.dart';
 import 'components/image_row.dart';
@@ -18,7 +17,6 @@ class PostDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: NavigationService().scaffoldKey = GlobalKey<ScaffoldState>(),
       body: SafeArea(
         child: EnhancedFutureBuilder(
           future: ParseHelper().getPostDetail(post),

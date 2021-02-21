@@ -17,7 +17,6 @@ class PostListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: NavigationService().scaffoldKey = GlobalKey<ScaffoldState>(),
       body: SafeArea(
         child: EnhancedFutureBuilder(
           future: postListFuture,

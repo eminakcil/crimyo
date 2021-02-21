@@ -28,40 +28,44 @@ class NotificationService {
           .requestNotificationPermissions(IosNotificationSettings());
     }
 
-    _firebaseMessaging.subscribeToTopic("all");
+    _firebaseMessaging.subscribeToTopic("lla");
 
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
         print("onMessage: $message");
-        NavigationService().scaffoldKey.currentState.showSnackBar(
-              SnackBar(
-                behavior: SnackBarBehavior.floating,
-                duration: Duration(seconds: 10),
-                content: GestureDetector(
-                  onTap: () {
-                    NavigationService()
-                        .scaffoldKey
-                        .currentState
-                        .hideCurrentSnackBar();
-                    _serialiseAndNavigate(message);
-                  },
-                  child: Container(
-                    padding: EdgeInsets.only(bottom: 20.0),
-                    color: Colors.transparent,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(message['notification']["title"]),
-                        Text(message['notification']["body"]),
-                      ],
-                    ),
-                  ),
+
+        showDialog(
+          context: NavigationService().navigatorKey.currentContext,
+          barrierDismissible: false,
+          builder: (context) {
+            return WillPopScope(
+              onWillPop: () async => false,
+              child: AlertDialog(
+                content: ListTile(
+                  title: Text(message["notification"]["title"]),
+                  subtitle: Text(message["notification"]["body"]),
                 ),
+                actions: [
+                  FlatButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text("Kapat"),
+                  ),
+                  if (message["data"]["view"] != null)
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        _serialiseAndNavigate(message);
+                      },
+                      child: Text("Git"),
+                    ),
+                ],
               ),
             );
+          },
+        );
       },
-      onBackgroundMessage: myBackgroundMessageHandler,
       onLaunch: (Map<String, dynamic> message) async {
         print("onLaunch: $message");
         _serialiseAndNavigate(message);

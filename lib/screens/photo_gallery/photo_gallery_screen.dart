@@ -4,8 +4,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
-import 'package:crimyo/services/navigation_service.dart';
-
 import 'package:crimyo/constants.dart';
 
 class PhotoGalleryScreen extends StatelessWidget {
@@ -17,7 +15,6 @@ class PhotoGalleryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: NavigationService().scaffoldKey = GlobalKey<ScaffoldState>(),
       body: SafeArea(
         child: PhotoViewGallery.builder(
           backgroundDecoration: BoxDecoration(

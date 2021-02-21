@@ -18,7 +18,6 @@ class DepartmentLessonPlanListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: NavigationService().scaffoldKey = GlobalKey<ScaffoldState>(),
       body: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.max,

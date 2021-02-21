@@ -23,7 +23,7 @@ dependencies:
   photo_view: ^0.10.3 # display image(s) in single page
 
   firebase_core:
-  firebase_messaging:
+  firebase_messaging: # for notifications
 
 dev_dependencies:
   flutter_test:

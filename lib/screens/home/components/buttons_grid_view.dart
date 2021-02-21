@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:crimyo/components/centered_grid_view.dart';
@@ -10,7 +11,50 @@ import 'package:crimyo/services/navigation_service.dart';
 
 import 'menu_button.dart';
 
-class ButtonsGridView extends StatelessWidget {
+class ButtonsGridView extends StatefulWidget {
+  @override
+  _ButtonsGridViewState createState() => _ButtonsGridViewState();
+}
+
+class _ButtonsGridViewState extends State<ButtonsGridView> {
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  var fastButtons = [];
+
+  @override
+  void initState() {
+    firestore.collection("fastButtons").get().then((value) {
+      var _list = [];
+      value.docs.forEach((element) {
+        var data = element.data();
+
+        if (data["view"] == "document") {
+          _list.add(Center(
+            child: MenuButton(
+              text: data["title"],
+              iconColor: Colors.black,
+              color: Color(0xFFC4C4ff),
+              press: () {
+                NavigationService().navigatorKey.currentState.push(
+                      MaterialPageRoute(
+                        builder: (context) => DocumentScreen(
+                          url: data["url"],
+                        ),
+                      ),
+                    );
+              },
+            ),
+          ));
+        }
+      });
+
+      setState(() {
+        fastButtons = _list;
+      });
+    });
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var _buttons = [
@@ -21,12 +65,12 @@ class ButtonsGridView extends StatelessWidget {
           color: Color(0xFFC4C4C4),
           press: () {
             NavigationService().navigatorKey.currentState.push(
-              MaterialPageRoute(
-                builder: (context) => PostListScreen(
-                  postListFuture: NewsService().getAllNews(),
-                ),
-              ),
-            );
+                  MaterialPageRoute(
+                    builder: (context) => PostListScreen(
+                      postListFuture: NewsService().getAllNews(),
+                    ),
+                  ),
+                );
           },
         ),
       ),
@@ -37,12 +81,13 @@ class ButtonsGridView extends StatelessWidget {
           color: Color(0xFFC4C4C4),
           press: () {
             NavigationService().navigatorKey.currentState.push(
-              MaterialPageRoute(
-                builder: (context) => PostListScreen(
-                  postListFuture: AnnouncmentService().getAllAnnouncements(),
-                ),
-              ),
-            );
+                  MaterialPageRoute(
+                    builder: (context) => PostListScreen(
+                      postListFuture:
+                          AnnouncmentService().getAllAnnouncements(),
+                    ),
+                  ),
+                );
           },
         ),
       ),
@@ -53,52 +98,16 @@ class ButtonsGridView extends StatelessWidget {
           color: Color(0xFFC4C4C4),
           press: () {
             NavigationService().navigatorKey.currentState.push(
-              MaterialPageRoute(
-                builder: (context) => DepartmentList(),
-              ),
-            );
+                  MaterialPageRoute(
+                    builder: (context) => DepartmentList(),
+                  ),
+                );
           },
         ),
       ),
     ];
 
-    var fastButtons = [
-      {
-        "content": "document",
-        "text": "Akademik Takvim",
-        "url":
-            "https://docs.google.com/spreadsheets/d/1xtkaCwiPCqpp3kUrzweM9bJPu2LOkJ7l4csa_lTLaE4/export?format=pdf",
-      },
-      {
-        "content": "document",
-        "text": "Yemek Listesi",
-        "url":
-            "https://docs.google.com/spreadsheets/d/1h0bA-ByWSHOF5CGWMgsHPkSZ7WgiXMyTwrZlcu6Po0E/export?format=pdf",
-      },
-    ];
-
-    var _children = _buttons;
-
-    fastButtons.forEach((element) {
-      if (element["content"] == "document") {
-        _children.add(Center(
-          child: MenuButton(
-            text: element["text"],
-            iconColor: Colors.black,
-            color: Color(0xFFC4C4C4),
-            press: () {
-              NavigationService().navigatorKey.currentState.push(
-                MaterialPageRoute(
-                  builder: (context) => DocumentScreen(
-                    url: element["url"],
-                  ),
-                ),
-              );
-            },
-          ),
-        ));
-      }
-    });
+    var _children = <Widget>[..._buttons, ...fastButtons];
 
     return CenteredGridView(
       crossAxisCount: 3,

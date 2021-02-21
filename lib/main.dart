@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:crimyo/services/navigation_service.dart';
 import 'package:crimyo/services/notification_service.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:crimyo/constants.dart';
@@ -11,6 +12,7 @@ import 'package:crimyo/screens/home/home_screen.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = new MyHttpOverrides();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 

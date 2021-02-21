@@ -28,7 +28,7 @@ class NotificationService {
           .requestNotificationPermissions(IosNotificationSettings());
     }
 
-    _firebaseMessaging.subscribeToTopic("lla");
+    _firebaseMessaging.subscribeToTopic("all");
 
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {

@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     NotificationService().initialise();
 
     return MaterialApp(
-      title: 'CRİMYO Mobil Uygulama',
+      title: 'Cide MYO',
       debugShowCheckedModeBanner: false,
       navigatorKey: NavigationService().navigatorKey,
       theme: ThemeData(

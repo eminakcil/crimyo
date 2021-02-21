@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:crimyo/constants.dart';
@@ -5,9 +6,7 @@ import 'package:crimyo/constants.dart';
 class MenuButton extends StatelessWidget {
   const MenuButton({
     @required this.text,
-    this.icon,
-    this.iconSize: 24.0,
-    this.iconColor: kTextColor,
+    this.imageUrl,
     this.color: kPrimaryColor,
     this.textColor: kTextColor,
     @required this.press,
@@ -15,10 +14,8 @@ class MenuButton extends StatelessWidget {
   });
 
   final String text;
-  final IconData icon;
-  final double iconSize;
+  final String imageUrl;
   final double buttonHeight;
-  final Color iconColor;
   final Color color;
   final Color textColor;
 
@@ -35,12 +32,36 @@ class MenuButton extends StatelessWidget {
           onPressed: press,
           color: color,
           textColor: textColor,
-          child: Icon(
-            icon,
-            size: iconSize,
-            color: iconColor,
-          ),
-          padding: EdgeInsets.all(16),
+          child: imageUrl != null
+              ? CachedNetworkImage(
+                  height: buttonHeight,
+                  width: buttonHeight,
+                  imageUrl: imageUrl,
+                  imageBuilder: (context, imageProvider) {
+                    return Container(
+                      width: buttonHeight,
+                      height: buttonHeight,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.fill,
+                        ),
+                        shape: BoxShape.circle,
+                      ),
+                    );
+                  },
+                  placeholder: (context, url) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
+                  errorWidget: (context, url, error) {
+                    return Center(
+                      child: Icon(Icons.error),
+                    );
+                  },
+                )
+              : null,
           shape: CircleBorder(),
         ),
         SizedBox(height: 8.0),

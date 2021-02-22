@@ -7,6 +7,7 @@ class MenuButton extends StatelessWidget {
   const MenuButton({
     @required this.text,
     this.imageUrl,
+    this.imageProvider,
     this.color: kPrimaryColor,
     this.textColor: kTextColor,
     @required this.press,
@@ -17,6 +18,7 @@ class MenuButton extends StatelessWidget {
   final String imageUrl;
   final double buttonHeight;
   final Color color;
+  final ImageProvider imageProvider;
   final Color textColor;
 
   final Function press;
@@ -44,7 +46,7 @@ class MenuButton extends StatelessWidget {
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           image: imageProvider,
-                          fit: BoxFit.fill,
+                          fit: BoxFit.cover,
                         ),
                         shape: BoxShape.circle,
                       ),
@@ -61,7 +63,19 @@ class MenuButton extends StatelessWidget {
                     );
                   },
                 )
-              : null,
+              : imageProvider != null
+                  ? Container(
+                      width: buttonHeight,
+                      height: buttonHeight,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                        ),
+                        shape: BoxShape.circle,
+                      ),
+                    )
+                  : null,
           shape: CircleBorder(),
         ),
         SizedBox(height: 8.0),

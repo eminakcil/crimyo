@@ -61,6 +61,7 @@ class _ButtonsGridViewState extends State<ButtonsGridView> {
       Center(
         child: MenuButton(
           text: "Haberler",
+          imageProvider: AssetImage("assets/images/news_icon.png"),
           color: Color(0xFFC4C4C4),
           press: () {
             NavigationService().navigatorKey.currentState.push(
@@ -76,6 +77,7 @@ class _ButtonsGridViewState extends State<ButtonsGridView> {
       Center(
         child: MenuButton(
           text: "Duyurular",
+          imageProvider: AssetImage("assets/images/announcments_icon.png"),
           color: Color(0xFFC4C4C4),
           press: () {
             NavigationService().navigatorKey.currentState.push(
@@ -92,6 +94,7 @@ class _ButtonsGridViewState extends State<ButtonsGridView> {
       Center(
         child: MenuButton(
           text: "Ders Programları",
+          imageProvider: AssetImage("assets/images/lesson_plan_icon.png"),
           color: Color(0xFFC4C4C4),
           press: () {
             NavigationService().navigatorKey.currentState.push(

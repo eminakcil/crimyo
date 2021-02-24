@@ -21,6 +21,7 @@ dependencies:
   cached_network_image: ^2.5.0 # cache image & display
   flutter_cache_manager: ^2.1.1 # cache files
   photo_view: ^0.10.3 # display image(s) in single page
+  carousel_slider: ^3.0.0 # for sliders
 
   firebase_core:
   firebase_messaging: # for notifications

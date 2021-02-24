@@ -28,18 +28,16 @@ class CenteredGridView extends StatelessWidget {
       );
     }
 
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          GridView.count(
-            primary: false,
-            shrinkWrap: true,
-            crossAxisCount: crossAxisCount,
-            children: children,
-          ),
-          _buildLastWidget(),
-        ],
-      ),
+    return Column(
+      children: [
+        GridView.count(
+          primary: false,
+          shrinkWrap: true,
+          crossAxisCount: crossAxisCount,
+          children: children,
+        ),
+        _buildLastWidget(),
+      ],
     );
   }
 }

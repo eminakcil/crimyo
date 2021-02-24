@@ -30,6 +30,9 @@ class NotificationService {
 
     _firebaseMessaging.subscribeToTopic("all");
 
+    // TODO Remove
+    print("FCM_TOKEN ${await _firebaseMessaging.getToken()}");
+
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
         print("onMessage: $message");

@@ -30,12 +30,10 @@ class ImageRow extends StatelessWidget {
                 (index) {
                   return GestureDetector(
                     onTap: () {
-                      NavigationService().navigatorKey.currentState.push(
-                        MaterialPageRoute(
-                          builder: (context) => PhotoGalleryScreen(
-                            imageUrls: images,
-                            initialPage: index,
-                          ),
+                      NavigationService.push(
+                        builder: (context) => PhotoGalleryScreen(
+                          imageUrls: images,
+                          initialPage: index,
                         ),
                       );
                     },

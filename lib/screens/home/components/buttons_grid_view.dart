@@ -34,13 +34,11 @@ class _ButtonsGridViewState extends State<ButtonsGridView> {
               imageUrl: data["image"],
               color: Color(0xFFC4C4C4),
               press: () {
-                NavigationService().navigatorKey.currentState.push(
-                      MaterialPageRoute(
-                        builder: (context) => DocumentScreen(
-                          url: data["url"],
-                        ),
-                      ),
-                    );
+                NavigationService.push(
+                  builder: (context) => DocumentScreen(
+                    url: data["url"],
+                  ),
+                );
               },
             ),
           ));
@@ -64,13 +62,11 @@ class _ButtonsGridViewState extends State<ButtonsGridView> {
           imageProvider: AssetImage("assets/images/news_icon.png"),
           color: Color(0xFFC4C4C4),
           press: () {
-            NavigationService().navigatorKey.currentState.push(
-                  MaterialPageRoute(
-                    builder: (context) => PostListScreen(
-                      postListFuture: NewsService().getAllNews(),
-                    ),
-                  ),
-                );
+            NavigationService.push(
+              builder: (context) => PostListScreen(
+                postListFuture: NewsService().getAllNews(),
+              ),
+            );
           },
         ),
       ),
@@ -80,14 +76,11 @@ class _ButtonsGridViewState extends State<ButtonsGridView> {
           imageProvider: AssetImage("assets/images/announcments_icon.png"),
           color: Color(0xFFC4C4C4),
           press: () {
-            NavigationService().navigatorKey.currentState.push(
-                  MaterialPageRoute(
-                    builder: (context) => PostListScreen(
-                      postListFuture:
-                          AnnouncmentService().getAllAnnouncements(),
-                    ),
-                  ),
-                );
+            NavigationService.push(
+              builder: (context) => PostListScreen(
+                postListFuture: AnnouncmentService().getAllAnnouncements(),
+              ),
+            );
           },
         ),
       ),
@@ -97,11 +90,9 @@ class _ButtonsGridViewState extends State<ButtonsGridView> {
           imageProvider: AssetImage("assets/images/lesson_plan_icon.png"),
           color: Color(0xFFC4C4C4),
           press: () {
-            NavigationService().navigatorKey.currentState.push(
-                  MaterialPageRoute(
-                    builder: (context) => DepartmentList(),
-                  ),
-                );
+            NavigationService.push(
+              builder: (context) => DepartmentList(),
+            );
           },
         ),
       ),

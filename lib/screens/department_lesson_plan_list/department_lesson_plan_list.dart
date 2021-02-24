@@ -33,13 +33,11 @@ class DepartmentLessonPlanListScreen extends StatelessWidget {
                     return ListItem(
                       text: snapshotData[index].title,
                       press: () {
-                        NavigationService().navigatorKey.currentState.push(
-                              MaterialPageRoute(
-                                builder: (context) => DocumentScreen(
-                                  url: snapshotData[index].url,
-                                ),
-                              ),
-                            );
+                        NavigationService.push(
+                          builder: (context) => DocumentScreen(
+                            url: snapshotData[index].url,
+                          ),
+                        );
                       },
                     );
                   },

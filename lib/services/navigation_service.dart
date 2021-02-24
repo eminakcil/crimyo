@@ -10,4 +10,13 @@ class NavigationService {
   }
 
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+  static push({@required WidgetBuilder builder}) {
+    return NavigationService()
+        .navigatorKey
+        .currentState
+        .push(
+      MaterialPageRoute(builder: builder),
+    );
+  }
 }

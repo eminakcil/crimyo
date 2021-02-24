@@ -24,14 +24,11 @@ class DepartmentList extends StatelessWidget {
                   return ListItem(
                     text: departments[index].name,
                     press: () {
-                      NavigationService().navigatorKey.currentState.push(
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  DepartmentLessonPlanListScreen(
-                                department: departments[index],
-                              ),
-                            ),
-                          );
+                      NavigationService.push(
+                        builder: (context) => DepartmentLessonPlanListScreen(
+                          department: departments[index],
+                        ),
+                      );
                     },
                   );
                 },

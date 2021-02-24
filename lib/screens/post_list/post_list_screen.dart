@@ -26,11 +26,9 @@ class PostListScreen extends StatelessWidget {
               return ListItem(
                 text: snapshotData[index].title,
                 press: () {
-                  NavigationService().navigatorKey.currentState.push(
-                    MaterialPageRoute(
-                      builder: (context) => PostDetailScreen(
-                        post: snapshotData[index],
-                      ),
+                  NavigationService.push(
+                    builder: (context) => PostDetailScreen(
+                      post: snapshotData[index],
                     ),
                   );
                 },

@@ -16,45 +16,43 @@ class ImageRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
       primary: true,
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
           SizedBox(width: kDefaultPadding),
-          SingleChildScrollView(
-            primary: false,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: List.generate(
-                images.length,
-                (index) {
-                  return GestureDetector(
-                    onTap: () {
-                      NavigationService.push(
-                        child: PhotoGalleryScreen(
-                          imageUrls: images,
-                          initialPage: index,
-                        ),
-                      );
-                    },
-                    child: Container(
-                      height: 150,
-                      width: 150,
-                      margin: EdgeInsets.only(
-                        right: index + 1 != images.length ? 20 : 0,
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: List.generate(
+              images.length,
+              (index) {
+                return GestureDetector(
+                  onTap: () {
+                    NavigationService.push(
+                      child: PhotoGalleryScreen(
+                        imageUrls: images,
+                        initialPage: index,
                       ),
-                      child: CachedNetworkImage(
-                        imageUrl: images[index],
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) =>
-                            Center(child: CircularProgressIndicator()),
-                        errorWidget: (context, url, error) =>
-                            Center(child: Icon(Icons.error)),
-                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 150,
+                    width: 150,
+                    margin: EdgeInsets.only(
+                      right: index + 1 != images.length ? kDefaultPadding/2 : 0,
                     ),
-                  );
-                },
-              ),
+                    child: CachedNetworkImage(
+                      imageUrl: images[index],
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) =>
+                          Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) =>
+                          Center(child: Icon(Icons.error)),
+                    ),
+                  ),
+                );
+              },
             ),
           ),
           SizedBox(width: kDefaultPadding),

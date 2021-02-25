@@ -27,6 +27,7 @@ class PostListScreen extends StatelessWidget {
           future: postListFuture,
           rememberFutureResult: false,
           whenDone: (snapshotData) => ListView.separated(
+            physics: BouncingScrollPhysics(),
             itemBuilder: (context, index) {
               return ListItem(
                 text: snapshotData[index].title,

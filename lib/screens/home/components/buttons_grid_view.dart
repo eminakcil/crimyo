@@ -35,8 +35,9 @@ class _ButtonsGridViewState extends State<ButtonsGridView> {
               color: Color(0xFFC4C4C4),
               press: () {
                 NavigationService.push(
-                  builder: (context) => DocumentScreen(
+                  child: DocumentScreen(
                     url: data["url"],
+                    title: data["title"],
                   ),
                 );
               },
@@ -63,8 +64,9 @@ class _ButtonsGridViewState extends State<ButtonsGridView> {
           color: Color(0xFFC4C4C4),
           press: () {
             NavigationService.push(
-              builder: (context) => PostListScreen(
+              child: PostListScreen(
                 postListFuture: NewsService().getAllNews(),
+                title: "Haberler",
               ),
             );
           },
@@ -77,8 +79,9 @@ class _ButtonsGridViewState extends State<ButtonsGridView> {
           color: Color(0xFFC4C4C4),
           press: () {
             NavigationService.push(
-              builder: (context) => PostListScreen(
+              child: PostListScreen(
                 postListFuture: AnnouncmentService().getAllAnnouncements(),
+                title: "Duyurular",
               ),
             );
           },
@@ -91,7 +94,7 @@ class _ButtonsGridViewState extends State<ButtonsGridView> {
           color: Color(0xFFC4C4C4),
           press: () {
             NavigationService.push(
-              builder: (context) => DepartmentList(),
+              child: DepartmentList(),
             );
           },
         ),

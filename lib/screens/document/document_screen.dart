@@ -7,13 +7,18 @@ import 'package:pdf_flutter/pdf_flutter.dart';
 class DocumentScreen extends StatelessWidget {
   const DocumentScreen({
     @required this.url,
+    @required this.title,
   });
 
   final String url;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text(title),
+        ),
       body: SafeArea(
         child: EnhancedFutureBuilder(
           future: DefaultCacheManager().getSingleFile(url),

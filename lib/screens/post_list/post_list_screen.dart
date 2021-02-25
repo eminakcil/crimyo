@@ -10,13 +10,18 @@ import 'package:crimyo/services/navigation_service.dart';
 class PostListScreen extends StatelessWidget {
   const PostListScreen({
     @required this.postListFuture,
+    @required this.title,
   });
 
   final Future<List<Post>> postListFuture;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+      ),
       body: SafeArea(
         child: EnhancedFutureBuilder(
           future: postListFuture,
@@ -27,7 +32,7 @@ class PostListScreen extends StatelessWidget {
                 text: snapshotData[index].title,
                 press: () {
                   NavigationService.push(
-                    builder: (context) => PostDetailScreen(
+                    child: PostDetailScreen(
                       post: snapshotData[index],
                     ),
                   );

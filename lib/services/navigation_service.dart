@@ -11,12 +11,23 @@ class NavigationService {
 
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-  static push({@required WidgetBuilder builder}) {
-    return NavigationService()
-        .navigatorKey
-        .currentState
-        .push(
-      MaterialPageRoute(builder: builder),
-    );
+  static push({@required Widget child}) {
+    return NavigationService().navigatorKey.currentState.push(
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) {
+              return child;
+            },
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return SlideTransition(
+                position: Tween<Offset>(
+                  begin: Offset(1,0),
+                  end: Offset.zero,
+                ).animate(animation),
+                child: child,
+              );
+            },
+          ),
+        );
   }
 }

@@ -31,7 +31,7 @@ class ImageRow extends StatelessWidget {
                   return GestureDetector(
                     onTap: () {
                       NavigationService.push(
-                        builder: (context) => PhotoGalleryScreen(
+                        child: PhotoGalleryScreen(
                           imageUrls: images,
                           initialPage: index,
                         ),

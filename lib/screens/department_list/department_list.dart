@@ -12,6 +12,9 @@ class DepartmentList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Ders Programları"),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -25,7 +28,7 @@ class DepartmentList extends StatelessWidget {
                     text: departments[index].name,
                     press: () {
                       NavigationService.push(
-                        builder: (context) => DepartmentLessonPlanListScreen(
+                        child: DepartmentLessonPlanListScreen(
                           department: departments[index],
                         ),
                       );

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:crimyo/screens/department_lesson_plan_list/department_lesson_plan_list.dart';
-import 'package:crimyo/components/list_item.dart';
+import 'package:crimyo/constants.dart';
+import 'package:crimyo/components/centered_grid_view.dart';
 import 'package:crimyo/models/department.dart';
 import 'package:crimyo/services/department_service.dart';
-import 'package:crimyo/services/navigation_service.dart';
+
+import 'components/department_button.dart';
 
 class DepartmentList extends StatelessWidget {
   final List<Department> departments = DepartmentService().getAllDepartments();
@@ -19,30 +20,14 @@ class DepartmentList extends StatelessWidget {
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ListView.separated(
-                primary: false,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return ListItem(
-                    text: departments[index].name,
-                    press: () {
-                      NavigationService.push(
-                        child: DepartmentLessonPlanListScreen(
-                          department: departments[index],
-                        ),
-                      );
-                    },
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return Divider(
-                    height: 0,
-                  );
-                },
-                itemCount: departments.length,
-              )
+              SizedBox(height: kDefaultPadding),
+              CenteredGridView(
+                crossAxisCount: 3,
+                children: departments.map((e) {
+                  return DepartmentButton(e);
+                }).toList(),
+              ),
             ],
           ),
         ),

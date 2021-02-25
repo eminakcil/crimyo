@@ -22,7 +22,6 @@ class DepartmentLessonPlanListScreen extends StatelessWidget {
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Column(
-            mainAxisSize: MainAxisSize.max,
             children: [
               LessonPlanList(department: department),
             ],

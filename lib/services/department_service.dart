@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:html/parser.dart';
 
 import 'package:crimyo/constants.dart';
@@ -23,32 +24,39 @@ class DepartmentService {
         name: "BİLGİSAYAR PROGRAMCILIĞI",
         url:
         "https://cide.kastamonu.edu.tr/index.php/tr/bilgisayar-programciligi",
+        imageProvider: AssetImage("assets/images/lesson_1.png"),
       ),
       Department(
         name: "ÇOCUK GELİŞİMİ",
         url: "https://cide.kastamonu.edu.tr/index.php/tr/cocuk-gelisimi",
+        imageProvider: AssetImage("assets/images/lesson_2.png"),
       ),
       Department(
         name: "ELEKTRONİK TEKNOLOJİSİ",
         url: "https://cide.kastamonu.edu.tr/index.php/tr/elektronik-teknolojisi",
+        imageProvider: AssetImage("assets/images/lesson_3.png"),
       ),
       Department(
         name: "ADALET",
         url: "https://cide.kastamonu.edu.tr/index.php/tr/adalet",
+        imageProvider: AssetImage("assets/images/lesson_4.png"),
       ),
       Department(
         name: "KAYNAK TEKNOLOJİSİ",
         url: "https://cide.kastamonu.edu.tr/index.php/tr/kaynak-teknolojisi",
+        imageProvider: AssetImage("assets/images/lesson_5.png"),
       ),
       Department(
         name: "MUHASEBE VE VERGİ UYGULAMALARI",
         url:
         "https://cide.kastamonu.edu.tr/index.php/tr/muhasebe-ve-vergi-uygulamalari",
+        imageProvider: AssetImage("assets/images/lesson_6.png"),
       ),
       Department(
         name: "TURİZM VE OTEL İŞLETMECİLİĞİ",
         url:
         "https://cide.kastamonu.edu.tr/index.php/tr/turizm-ve-otel-isletmeciligi",
+        imageProvider: AssetImage("assets/images/lesson_7.png"),
       ),
     ];
   }

@@ -44,16 +44,12 @@ class LessonPlanList extends StatelessWidget {
           itemCount: snapshotData.length,
         );
       },
-      whenNotDone: Expanded(
-        child: Center(
-          child: CircularProgressIndicator(),
-        ),
+      whenNotDone: Center(
+        child: CircularProgressIndicator(),
       ),
-      whenError: (error) => Expanded(
-        child: Center(
-          child: Icon(
-            Icons.error,
-          ),
+      whenError: (error) => Center(
+        child: Icon(
+          Icons.error,
         ),
       ),
     );

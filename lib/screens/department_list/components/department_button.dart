@@ -30,7 +30,7 @@ class DepartmentButton extends StatelessWidget {
             height: buttonHeight,
             width: buttonHeight,
             decoration: BoxDecoration(
-              color: Colors.pink,
+              color: Color(0xFF6495ed),
               borderRadius: BorderRadius.circular(kDefaultPadding),
             ),
             padding: EdgeInsets.all(kDefaultPadding / 2),

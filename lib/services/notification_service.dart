@@ -84,7 +84,7 @@ class NotificationService {
     var notificationData = message["data"];
     var view = notificationData["view"];
     var url = notificationData["url"];
-    var title = notificationData["title"] ?? "";
+    var title = message["notification"]["title"];
 
     if (view != null) {
       var route;

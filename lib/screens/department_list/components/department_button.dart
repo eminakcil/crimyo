@@ -43,6 +43,7 @@ class DepartmentButton extends StatelessWidget {
           Text(
             department.name,
             textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 10),
           ),
         ],
       ),

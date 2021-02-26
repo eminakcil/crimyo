@@ -19,6 +19,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               SizedBox(height: kDefaultPadding),
               ImageSlider(),
+              SizedBox(height: kDefaultPadding),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: kDefaultPadding / 2),
                 child: ButtonsGridView(),

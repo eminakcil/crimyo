@@ -16,17 +16,17 @@ class DepartmentButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        GestureDetector(
-          onTap: () {
-            NavigationService.push(
-              child: DepartmentLessonPlanListScreen(department: department),
-            );
-          },
-          child: Container(
+    return GestureDetector(
+      onTap: () {
+        NavigationService.push(
+          child: DepartmentLessonPlanListScreen(department: department),
+        );
+      },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
             height: buttonHeight,
             width: buttonHeight,
             decoration: BoxDecoration(
@@ -39,13 +39,13 @@ class DepartmentButton extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-        ),
-        SizedBox(height: 8.0),
-        Text(
-          department.name,
-          textAlign: TextAlign.center,
-        ),
-      ],
+          SizedBox(height: 8.0),
+          Text(
+            department.name,
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
     );
   }
 }

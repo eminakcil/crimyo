@@ -84,6 +84,7 @@ class NotificationService {
     var notificationData = message["data"];
     var view = notificationData["view"];
     var url = notificationData["url"];
+    var title = notificationData["title"] ?? "";
 
     if (view != null) {
       var route;
@@ -100,7 +101,10 @@ class NotificationService {
           break;
         case "document":
           route = MaterialPageRoute(
-            builder: (context) => DocumentScreen(url: url),
+            builder: (context) => DocumentScreen(
+              url: url,
+              title: title,
+            ),
           );
           break;
         default:

@@ -11,6 +11,8 @@ import 'package:crimyo/constants.dart';
 import 'package:crimyo/my_http_overrides.dart';
 import 'package:crimyo/screens/home/home_screen.dart';
 
+import 'locator.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -20,6 +22,8 @@ Future<void> main() async {
 
   HttpOverrides.global = new MyHttpOverrides();
   await Firebase.initializeApp();
+  await NotificationService.createNotificationChannel();
+  setupLocators();
   runApp(MyApp());
 }
 

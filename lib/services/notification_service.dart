@@ -1,24 +1,34 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:get_it/get_it.dart';
 
 import 'package:crimyo/models/post.dart';
 import 'package:crimyo/screens/document/document_screen.dart';
 import 'package:crimyo/screens/post_detail/post_detail_screen.dart';
 import 'package:crimyo/services/navigation_service.dart';
+import 'package:crimyo/services/local_notification.dart';
 
 class NotificationService {
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
-  static Future<dynamic> myBackgroundMessageHandler(
-      Map<String, dynamic> message) {
-    if (message.containsKey('data')) {
-      final dynamic data = message['data'];
-    }
-    if (message.containsKey('notification')) {
-      final dynamic notification = message['notification'];
+  static const MethodChannel channel = MethodChannel('crimyo/channel');
+
+  static const Map<String, String> channelMap = {
+    "id": "info_channel",
+    "name": "Bilgilendirme",
+    "description": "Bilgilendirmelerden haberdar olun",
+  };
+
+  static createNotificationChannel() async {
+    try {
+      await channel.invokeMethod('createNotificationChannel', channelMap);
+    } on PlatformException catch (e) {
+      print(e);
     }
   }
 
@@ -30,57 +40,32 @@ class NotificationService {
 
     _firebaseMessaging.subscribeToTopic("all");
 
-    // TODO Remove
+    // TODO remove this line ↓
     print("FCM_TOKEN ${await _firebaseMessaging.getToken()}");
 
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
         print("onMessage: $message");
-
-        showDialog(
-          context: NavigationService().navigatorKey.currentContext,
-          barrierDismissible: false,
-          builder: (context) {
-            return WillPopScope(
-              onWillPop: () async => false,
-              child: AlertDialog(
-                content: ListTile(
-                  title: Text(message["notification"]["title"]),
-                  subtitle: Text(message["notification"]["body"]),
-                ),
-                actions: [
-                  FlatButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text("Kapat"),
-                  ),
-                  if (message["data"]["view"] != null)
-                    FlatButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                        _serialiseAndNavigate(message);
-                      },
-                      child: Text("Git"),
-                    ),
-                ],
-              ),
+        GetIt.instance.get<LocalNotification>().show(
+              int.parse("${message["data"]["id"] ?? 1}"),
+              message["notification"]["title"],
+              message["notification"]["body"],
+              payload: json.encode(message),
             );
-          },
-        );
       },
       onLaunch: (Map<String, dynamic> message) async {
         print("onLaunch: $message");
-        _serialiseAndNavigate(message);
+        serialiseAndNavigate(json.encode(message));
       },
       onResume: (Map<String, dynamic> message) async {
         print("onResume: $message");
-        _serialiseAndNavigate(message);
+        serialiseAndNavigate(json.encode(message));
       },
     );
   }
 
-  void _serialiseAndNavigate(Map<String, dynamic> message) {
+  static serialiseAndNavigate(String payload) {
+    Map<String, dynamic> message = json.decode(payload);
     var notificationData = message["data"];
     var view = notificationData["view"];
     var url = notificationData["url"];

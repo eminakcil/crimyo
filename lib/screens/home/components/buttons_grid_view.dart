@@ -22,27 +22,29 @@ class _ButtonsGridViewState extends State<ButtonsGridView> {
 
   @override
   void initState() {
-    firestore.collection("fastButtons").get().then((value) {
+    firestore.collection("fastButtons").orderBy("index",descending: true).get().then((value) {
       var _list = [];
       value.docs.forEach((element) {
         var data = element.data();
 
-        if (data["view"] == "document") {
-          _list.add(Center(
-            child: MenuButton(
-              text: data["title"],
-              imageUrl: data["image"],
-              color: Color(0xFFC4C4C4),
-              press: () {
-                NavigationService.push(
-                  child: DocumentScreen(
-                    url: data["url"],
-                    title: data["title"],
-                  ),
-                );
-              },
-            ),
-          ));
+        if (data["active"]) {
+          if (data["view"] == "document") {
+            _list.add(Center(
+              child: MenuButton(
+                text: data["title"],
+                imageUrl: data["image"],
+                color: Color(0xFFC4C4C4),
+                press: () {
+                  NavigationService.push(
+                    child: DocumentScreen(
+                      url: data["url"],
+                      title: data["title"],
+                    ),
+                  );
+                },
+              ),
+            ));
+          }
         }
       });
 

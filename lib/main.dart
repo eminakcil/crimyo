@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
     NotificationService().initialise();
 
     return MaterialApp(
-      title: 'Cide MYO',
+      title: 'CRIMYO',
       debugShowCheckedModeBanner: false,
       navigatorKey: NavigationService().navigatorKey,
       theme: ThemeData(

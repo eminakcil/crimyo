@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:enhanced_future_builder/enhanced_future_builder.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:pdf_flutter/pdf_flutter.dart';
+import 'package:share/share.dart';
 
 class DocumentScreen extends StatelessWidget {
   const DocumentScreen({
@@ -16,9 +17,19 @@ class DocumentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(title ?? ''),
-        ),
+      appBar: AppBar(
+        title: Text(title ?? ''),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.share),
+            onPressed: () {
+              DefaultCacheManager().getSingleFile(url).then((value) {
+                Share.shareFiles([value.path]);
+              });
+            },
+          ),
+        ],
+      ),
       body: SafeArea(
         child: EnhancedFutureBuilder(
           future: DefaultCacheManager().getSingleFile(url),

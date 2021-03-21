@@ -7,7 +7,7 @@ import 'package:pdf_flutter/pdf_flutter.dart';
 class DocumentScreen extends StatelessWidget {
   const DocumentScreen({
     @required this.url,
-    @required this.title,
+    this.title,
   });
 
   final String url;
@@ -17,7 +17,7 @@ class DocumentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(title),
+          title: Text(title ?? ''),
         ),
       body: SafeArea(
         child: EnhancedFutureBuilder(

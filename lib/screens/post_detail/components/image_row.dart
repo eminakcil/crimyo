@@ -21,7 +21,7 @@ class ImageRow extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          SizedBox(width: kDefaultPadding),
+          // SizedBox(width: kDefaultPadding),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: List.generate(
@@ -55,7 +55,7 @@ class ImageRow extends StatelessWidget {
               },
             ),
           ),
-          SizedBox(width: kDefaultPadding),
+          // SizedBox(width: kDefaultPadding),
         ],
       ),
     );

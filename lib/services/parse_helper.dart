@@ -12,7 +12,7 @@ class ParseHelper {
 
   static final ParseHelper _instance = ParseHelper._privateConstructor();
 
-  factory ParseHelper(){
+  factory ParseHelper() {
     return _instance;
   }
 
@@ -31,7 +31,8 @@ class ParseHelper {
           var uri = Uri.parse(baseUrl + elementHref);
           var parameters = uri.queryParameters;
           var startIndex = parameters['start'];
-          if (startIndex != null && !startIndexes.contains(startIndex)) startIndexes.add(startIndex);
+          if (startIndex != null && !startIndexes.contains(startIndex))
+            startIndexes.add(startIndex);
         }
       });
     }
@@ -40,7 +41,6 @@ class ParseHelper {
   }
 
   Future<Post> getPostDetail(Post post) async {
-
     final url = post.url;
 
     try {
@@ -50,11 +50,12 @@ class ParseHelper {
 
         var scriptTags = document.getElementsByTagName('script');
 
-        for(var e in scriptTags){
+        for (var e in scriptTags) {
           e.remove();
         }
 
-        var contentDetails = document.querySelector("#t3-content .item-page article");
+        var contentDetails =
+            document.querySelector("#t3-content .item-page article");
 
         var articleTitle = contentDetails.querySelector(".article-title");
         post.title = articleTitle.text.trim();
@@ -93,4 +94,50 @@ class ParseHelper {
     }
   }
 
+  Future<String> getContentInnerHtml(String url) async {
+    try {
+      var response = await _dio.get(url);
+      if (response.statusCode == 200) {
+        var document = parse(response.data);
+
+        var scriptTags = document.getElementsByTagName('script');
+        var imgTags = document.getElementsByTagName('img');
+
+        // remove <script> tags
+        for (var e in scriptTags) {
+          e.remove();
+        }
+
+        // prepare image src
+        for (var e in imgTags) {
+          var src = e.attributes['src'];
+
+          String imageUrl = "";
+          var imageClass = e.attributes['class'];
+
+          if (imageClass == 'sigFreeImg')
+            imageUrl = e.parent.attributes['href'];
+          else
+            imageUrl = e.attributes['src'];
+
+          if (imageUrl != null) {
+            if (imageUrl[0] == '/') imageUrl = baseUrl + imageUrl;
+
+            e.attributes['src'] = imageUrl;
+          }
+        }
+
+        var contentDetails =
+            document.querySelector("#t3-content .item-page article");
+
+        var articleContent = contentDetails.querySelector(".article-content");
+
+        return contentDetails.innerHtml;
+      } else {
+        return Future.error('statusCodeError');
+      }
+    } catch (e) {
+      return Future.error('undefinedError');
+    }
+  }
 }

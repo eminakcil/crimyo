@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:html/dom.dart';
 import 'package:html/parser.dart';
@@ -45,6 +47,12 @@ class ParseHelper {
       var response = await _dio.get(url);
       if (response.statusCode == 200) {
         var document = parse(response.data);
+
+        var scriptTags = document.getElementsByTagName('script');
+
+        for(var e in scriptTags){
+          e.remove();
+        }
 
         var contentDetails = document.querySelector("#t3-content .item-page article");
 

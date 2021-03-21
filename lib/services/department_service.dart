@@ -62,7 +62,10 @@ class DepartmentService {
   }
 
   Future<List<LessonPlan>> getLessonPlanTables(Department department) async {
-    String lessonPlanTablePageUrl = '${department.url}/ders-programi';
+    String lessonPlanTablePageUrl = department.url;
+    if (!lessonPlanTablePageUrl.contains('/ders-programi')){
+      lessonPlanTablePageUrl += '/ders-programi';
+    }
 
     try {
       var response = await _dio.get(lessonPlanTablePageUrl);

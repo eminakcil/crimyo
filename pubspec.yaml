@@ -16,8 +16,8 @@ dependencies:
 
   dio: ^3.0.10 # http client
   html: ^0.14.0+4 # html parser
-  flutter_html: ^1.2.0
   flutter_widget_from_html: ^0.5.2+1
+  url_launcher: ^5.7.10
   enhanced_future_builder: ^1.0.3 # FutureBuilder wrapper
   pdf_flutter: ^1.1.4 # displaying PDF
   cached_network_image: ^2.5.0 # cache image & display

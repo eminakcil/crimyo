@@ -19,14 +19,7 @@ class DepartmentLessonPlanListScreen extends StatelessWidget {
         title: Text(department.name),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Column(
-            children: [
-              LessonPlanList(department: department),
-            ],
-          ),
-        ),
+        child: LessonPlanList(department: department),
       ),
     );
   }

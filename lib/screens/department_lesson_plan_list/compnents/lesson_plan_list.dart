@@ -21,8 +21,7 @@ class LessonPlanList extends StatelessWidget {
       rememberFutureResult: true,
       whenDone: (snapshotData) {
         return ListView.separated(
-          primary: false,
-          shrinkWrap: true,
+          physics: BouncingScrollPhysics(),
           itemBuilder: (context, index) {
             return ListItem(
               text: snapshotData[index].title,

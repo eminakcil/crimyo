@@ -4,7 +4,7 @@ import 'package:enhanced_future_builder/enhanced_future_builder.dart';
 
 import 'package:crimyo/models/post.dart';
 import 'package:crimyo/components/list_item.dart';
-import 'package:crimyo/screens/post_detail/test/post_detail_screen.dart';
+import 'package:crimyo/screens/post_detail/post_detail_screen.dart';
 import 'package:crimyo/services/navigation_service.dart';
 
 class PostListScreen extends StatelessWidget {

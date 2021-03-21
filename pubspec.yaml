@@ -3,7 +3,7 @@ description: CRIMYO Mobil Uygulama.
 
 publish_to: 'none'
 
-version: 0.7.0+1
+version: 0.8.0+1
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -16,9 +16,9 @@ dependencies:
 
   dio: ^3.0.10 # http client
   html: ^0.14.0+4 # html parser
-  flutter_widget_from_html: ^0.5.2+1
-  url_launcher: ^5.7.10
-  share: ^0.6.5+4
+  flutter_widget_from_html: ^0.5.2+1 # html tags to flutter widget helper
+  url_launcher: ^5.7.10 # open browser
+  share: ^0.6.5+4 # share document
   enhanced_future_builder: ^1.0.3 # FutureBuilder wrapper
   pdf_flutter: ^1.1.4 # displaying PDF
   cached_network_image: ^2.5.0 # cache image & display

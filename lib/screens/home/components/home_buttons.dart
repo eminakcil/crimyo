@@ -8,21 +8,26 @@ import 'package:crimyo/screens/post_list/post_list_screen.dart';
 import 'package:crimyo/services/announcment_service.dart';
 import 'package:crimyo/services/news_service.dart';
 import 'package:crimyo/services/navigation_service.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'menu_button.dart';
 
-class ButtonsGridView extends StatefulWidget {
+class HomeButtons extends StatefulWidget {
   @override
-  _ButtonsGridViewState createState() => _ButtonsGridViewState();
+  _HomeButtonsState createState() => _HomeButtonsState();
 }
 
-class _ButtonsGridViewState extends State<ButtonsGridView> {
+class _HomeButtonsState extends State<HomeButtons> {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   var fastButtons = [];
 
   @override
   void initState() {
-    firestore.collection("fastButtons").orderBy("index",descending: true).get().then((value) {
+    firestore
+        .collection("fastButtons")
+        .orderBy("index", descending: true)
+        .get()
+        .then((value) {
       var _list = [];
       value.docs.forEach((element) {
         var data = element.data();
@@ -105,9 +110,26 @@ class _ButtonsGridViewState extends State<ButtonsGridView> {
 
     var _children = <Widget>[..._buttons, ...fastButtons];
 
-    return CenteredGridView(
-      crossAxisCount: 3,
-      children: _children,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        CenteredGridView(
+          crossAxisCount: 3,
+          children: _children,
+        ),
+        Center(
+          child: MenuButton(
+            text: "OBS",
+            imageProvider: AssetImage("assets/images/obs_icon.png"),
+            press: () async {
+              var url = "https://obs.kastamonu.edu.tr/";
+              if (await canLaunch(url) != null) {
+                await launch(url);
+              }
+            },
+          ),
+        ),
+      ],
     );
   }
 }

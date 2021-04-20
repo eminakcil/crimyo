@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:crimyo/constants.dart';
 
-import 'components/buttons_grid_view.dart';
+import 'components/home_buttons.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -15,16 +15,18 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
-          child: Column(
-            children: [
-              SizedBox(height: kDefaultPadding),
-              ImageSlider(),
-              SizedBox(height: kDefaultPadding),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: kDefaultPadding / 2),
-                child: ButtonsGridView(),
-              ),
-            ],
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: kDefaultPadding),
+            child: Column(
+              children: [
+                ImageSlider(),
+                SizedBox(height: kDefaultPadding),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: kDefaultPadding / 2),
+                  child: HomeButtons(),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -33,22 +33,39 @@ class _HomeButtonsState extends State<HomeButtons> {
         var data = element.data();
 
         if (data["active"]) {
-          if (data["view"] == "document") {
-            _list.add(Center(
-              child: MenuButton(
-                text: data["title"],
-                imageUrl: data["image"],
-                color: Color(0xFFC4C4C4),
-                press: () {
-                  NavigationService.push(
-                    child: DocumentScreen(
-                      url: data["url"],
-                      title: data["title"],
-                    ),
-                  );
-                },
-              ),
-            ));
+          switch (data["view"]) {
+            case "document":
+              _list.add(Center(
+                child: MenuButton(
+                  text: data["title"],
+                  imageUrl: data["image"],
+                  color: Color(0xFFC4C4C4),
+                  press: () {
+                    NavigationService.push(
+                      child: DocumentScreen(
+                        url: data["url"],
+                        title: data["title"],
+                      ),
+                    );
+                  },
+                ),
+              ));
+              break;
+            case "link":
+              _list.add(Center(
+                child: MenuButton(
+                  text: data["title"],
+                  imageUrl: data["image"],
+                  press: () async {
+                    var url = data["target"];
+                    if (await canLaunch(url) != null) {
+                      await launch(url);
+                    }
+                  },
+                ),
+              ));
+              break;
+            default:
           }
         }
       });
@@ -116,18 +133,6 @@ class _HomeButtonsState extends State<HomeButtons> {
         CenteredGridView(
           crossAxisCount: 3,
           children: _children,
-        ),
-        Center(
-          child: MenuButton(
-            text: "OBS",
-            imageProvider: AssetImage("assets/images/obs_icon.png"),
-            press: () async {
-              var url = "https://obs.kastamonu.edu.tr/";
-              if (await canLaunch(url) != null) {
-                await launch(url);
-              }
-            },
-          ),
         ),
       ],
     );
